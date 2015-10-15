@@ -1,7 +1,7 @@
 (function (angular) {
   "use strict";
 
-  var app = angular.module('myApp.account', ['firebase', 'firebase.utils', 'firebase.auth', 'ngRoute']);
+  var app = angular.module('myApp.account', ['firebase', 'firebase.utils', 'firebase.auth']);
 
   app.controller('AccountCtrl', ['$scope', 'Auth', 'fbutil', 'user', '$location', '$firebaseObject',
     function($scope, Auth, fbutil, user, $location, $firebaseObject) {
@@ -64,14 +64,12 @@
     }
   ]);
 
-  app.config(['$routeProvider', function($routeProvider) {
-    // require user to be authenticated before they can access this page
-    // this is handled by the .whenAuthenticated method declared in
-    // components/router/router.js
-    $routeProvider.whenAuthenticated('/account', {
+  app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.whenAuthenticatedState('/account', {
+      url: '/account',
       templateUrl: 'account/account.html',
       controller: 'AccountCtrl'
-    })
+    });
   }]);
 
 })(angular);

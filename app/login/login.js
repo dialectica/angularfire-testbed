@@ -1,8 +1,9 @@
 "use strict";
-angular.module('myApp.login', ['firebase.utils', 'firebase.auth', 'ngRoute'])
+angular.module('myApp.login', ['firebase.utils', 'firebase.auth'])
 
-  .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/login', {
+  .config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('/login', {
+      url: '/login',
       controller: 'LoginCtrl',
       templateUrl: 'login/login.html'
     });

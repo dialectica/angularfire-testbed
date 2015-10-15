@@ -1,7 +1,7 @@
 (function (angular) {
   "use strict";
 
-  var app = angular.module('myApp.chat', ['ngRoute', 'firebase.utils', 'firebase']);
+  var app = angular.module('myApp.chat', ['firebase.utils', 'firebase']);
 
   app.controller('ChatCtrl', ['$scope', 'messageList', function($scope, messageList) {
       $scope.messages = messageList;
@@ -17,8 +17,9 @@
     return $firebaseArray(ref);
   }]);
 
-  app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/chat', {
+  app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('/chat', {
+      url: '/chat',
       templateUrl: 'chat/chat.html',
       controller: 'ChatCtrl'
     });

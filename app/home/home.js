@@ -1,7 +1,7 @@
 (function(angular) {
   "use strict";
 
-  var app = angular.module('myApp.home', ['firebase.auth', 'firebase', 'firebase.utils', 'ngRoute']);
+  var app = angular.module('myApp.home', ['firebase.auth', 'firebase', 'firebase.utils']);
 
   app.controller('HomeCtrl', ['$scope', 'fbutil', 'user', '$firebaseObject', 'FBURL', function ($scope, fbutil, user, $firebaseObject, FBURL) {
     $scope.syncedValue = $firebaseObject(fbutil.ref('syncedValue'));
@@ -9,8 +9,9 @@
     $scope.FBURL = FBURL;
   }]);
 
-  app.config(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/home', {
+  app.config(['$stateProvider', function ($stateProvider) {
+    $stateProvider.state('/home', {
+      url: '/home',
       templateUrl: 'home/home.html',
       controller: 'HomeCtrl',
       resolve: {
@@ -26,4 +27,3 @@
   }]);
 
 })(angular);
-
