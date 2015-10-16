@@ -3,8 +3,8 @@
 
   var app = angular.module('myApp.account', ['firebase', 'firebase.utils', 'firebase.auth']);
 
-  app.controller('AccountCtrl', ['$scope', 'Auth', 'fbutil', 'user', '$location', '$firebaseObject',
-    function($scope, Auth, fbutil, user, $location, $firebaseObject) {
+  app.controller('AccountCtrl', ['$scope', 'Auth', 'fbutil', 'user', '$state', '$firebaseObject',
+    function($scope, Auth, fbutil, user, $state, $firebaseObject) {
       var unbind;
       // create a 3-way binding with the user profile object in Firebase
       var profile = $firebaseObject(fbutil.ref('users', user.uid));
@@ -15,7 +15,7 @@
         if( unbind ) { unbind(); }
         profile.$destroy();
         Auth.$unauth();
-        $location.path('/login');
+        $state.go('login');
       };
 
       $scope.changePassword = function(pass, confirm, newPass) {
@@ -65,7 +65,7 @@
   ]);
 
   app.config(['$stateProvider', function($stateProvider) {
-    $stateProvider.whenAuthenticatedState('/account', {
+    $stateProvider.whenAuthenticatedState('account', {
       url: '/account',
       templateUrl: 'account/account.html',
       controller: 'AccountCtrl'

@@ -10,7 +10,7 @@
   }]);
 
   app.config(['$stateProvider', function ($stateProvider) {
-    $stateProvider.state('/home', {
+    $stateProvider.state('home', {
       url: '/home',
       templateUrl: 'home/home.html',
       controller: 'HomeCtrl',

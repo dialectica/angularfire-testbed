@@ -2,14 +2,14 @@
 angular.module('myApp.login', ['firebase.utils', 'firebase.auth'])
 
   .config(['$stateProvider', function($stateProvider) {
-    $stateProvider.state('/login', {
+    $stateProvider.state('login', {
       url: '/login',
       controller: 'LoginCtrl',
       templateUrl: 'login/login.html'
     });
   }])
 
-  .controller('LoginCtrl', ['$scope', 'Auth', '$location', 'fbutil', function($scope, Auth, $location, fbutil) {
+  .controller('LoginCtrl', ['$scope', 'Auth', '$state', 'fbutil', function($scope, Auth, $state, fbutil) {
     $scope.email = null;
     $scope.pass = null;
     $scope.confirm = null;
@@ -19,7 +19,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth'])
       $scope.err = null;
       Auth.$authWithPassword({ email: email, password: pass }, {rememberMe: true})
         .then(function(/* user */) {
-          $location.path('/account');
+          $state.go('account');
         }, function(err) {
           $scope.err = errMessage(err);
         });
@@ -45,7 +45,7 @@ angular.module('myApp.login', ['firebase.utils', 'firebase.auth'])
           })
           .then(function(/* user */) {
             // redirect to the account page
-            $location.path('/account');
+            $state.go('account');
           }, function(err) {
             $scope.err = errMessage(err);
           });

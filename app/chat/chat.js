@@ -18,7 +18,7 @@
   }]);
 
   app.config(['$stateProvider', function($stateProvider) {
-    $stateProvider.state('/chat', {
+    $stateProvider.state('chat', {
       url: '/chat',
       templateUrl: 'chat/chat.html',
       controller: 'ChatCtrl'

@@ -15,10 +15,10 @@ angular.module('myApp', [
   .config(['$urlRouterProvider', function($urlRouterProvider) {
 
     // when there is an empty route, redirect to home.
-    $urlRouterProvider.when('', '/home');
+    $urlRouterProvider.when('', 'home');
 
     // when invalid route, redirect to home.
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('home');
 
   },])
 
