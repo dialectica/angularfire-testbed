@@ -1,10 +1,29 @@
 <h2>Chat</h2>
+<graphy messages="messages"></graphy>
+<style>
+    .link {
+        stroke: #2E2E2E;
+        stroke-width: 2px;
+    }
 
+    .node {
+        stroke: #fff;
+        stroke-width: 2px;
+    }
+    .textClass {
+        stroke: #323232;
+        font-family: "Lucida Grande", "Droid Sans", Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        stroke-width: .5;
+        font-size: 14px;
+    }
+</style>
 <form>
   <input placeholder="Message..." ng-model="newMessage">
   <button type="submit" ng-click="addMessage(newMessage);newMessage = null;">send</button>
 </form>
-
+<!--
 <ul id="messages" ng-show="messages.length">
     <li ng-repeat="message in messages | reverse">{{message.text}}</li>
 </ul>
+-->
